@@ -2,7 +2,7 @@ package com.wecp.progressive.config;
 
 import java.sql.*;
 import java.io.*;
-import java.util.*;
+import java.util.Properties;
 public class DatabaseConnectionManager {
     private static final Properties properties = new Properties();
  
@@ -11,7 +11,7 @@ public class DatabaseConnectionManager {
     }
  
     private static void loadProperties(){
-        try (InputStream input = DatabaseConnectionManager.class.getClassLoader().getResourceAsStream("/home/ubuntu/root/backend/src/main/resources/application.properties")) {
+        try (InputStream input = DatabaseConnectionManager.class.getClassLoader().getResourceAsStream("application.properties")) {
             if(input == null){
                 throw new IllegalStateException("resource.properties not found in classpath");
             }
