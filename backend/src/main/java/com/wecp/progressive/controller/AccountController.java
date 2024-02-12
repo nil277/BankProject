@@ -17,10 +17,12 @@ import java.util.List;
 @RequestMapping("/accounts")
 public class AccountController {
 
-    @Autowired
-    private AccountService accountService;
+    private final AccountService accountService;
 
-    
+    @Autowired
+    public AccountController(@Qualifier("accountServiceImplJpa") AccountService accountService) {
+        this.accountService = accountService;
+    }
 
     @GetMapping
     public ResponseEntity<List<Accounts>> getAllAccounts() {

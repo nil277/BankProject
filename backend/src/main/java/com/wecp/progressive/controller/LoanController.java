@@ -9,27 +9,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-
 @RestController
 @RequestMapping("/loans")
 public class LoanController {
+
     @Autowired
     private LoanService loanService;
 
     @GetMapping
     public ResponseEntity<List<Loan>> getAllLoans() {
-        return new ResponseEntity<>(loanService.getAllLoans(),HttpStatus.OK);
+        return new ResponseEntity<List<Loan>>(loanService.getAllLoans(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Loan> getLoanById(@PathVariable Long id) {
-        return new ResponseEntity<>(loanService.getLoanById(id),HttpStatus.OK);
+        return new ResponseEntity<Loan>(loanService.getLoanById(id), HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<Loan> createLoan(@RequestBody Loan loan) {
-        return new ResponseEntity<>(loanService.createLoan(loan),HttpStatus.CREATED);
+        return new ResponseEntity<Loan>(loanService.createLoan(loan), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

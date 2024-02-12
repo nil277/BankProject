@@ -16,10 +16,12 @@ import java.util.List;
 @RequestMapping("/customers")
 public class CustomerController {
 
-    @Autowired
-    private CustomerService customerService;
+    private final CustomerService customerService;
 
-    
+    @Autowired
+    public CustomerController(@Qualifier("customerServiceImplJpa") CustomerService customerService) {
+        this.customerService = customerService;
+    }
 
     @GetMapping
     public ResponseEntity<List<Customers>> getAllCustomers() {

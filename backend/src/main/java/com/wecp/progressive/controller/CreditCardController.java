@@ -11,21 +11,21 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RestController
-@RequestMapping("/credit-cards")
+@RequestMapping("credit-cards")
 public class CreditCardController {
+
     @Autowired
     private CreditCardService creditCardService;
 
     @GetMapping
     public ResponseEntity<List<CreditCard>> getAllCreditCards() {
-        return new ResponseEntity<>(creditCardService.getAllCreditCards(),HttpStatus.OK);
+        return new ResponseEntity<List<CreditCard>>(creditCardService.getAllCreditCards(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<CreditCard> getCreditCardById(@PathVariable Long id) {
-        return new ResponseEntity<>(creditCardService.getCreditCardById(id),HttpStatus.OK);
+        return new ResponseEntity<CreditCard>(creditCardService.getCreditCardById(id), HttpStatus.OK);
     }
 
     @PostMapping
@@ -34,10 +34,10 @@ public class CreditCardController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateCreditCard(@PathVariable Long id,@RequestBody CreditCard creditCard) {
+    public ResponseEntity<Void> updateCreditCard(@PathVariable Long id, @RequestBody CreditCard creditCard) {
         creditCard.setId(id);
         creditCardService.updateCreditCard(creditCard);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
